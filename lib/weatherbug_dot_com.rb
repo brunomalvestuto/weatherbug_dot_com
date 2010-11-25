@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
-require 'weatherbug_dot_com/station.rb'
-require 'weatherbug_dot_com/weather.rb'
+require 'weatherbug_dot_com/station'
+require 'weatherbug_dot_com/weather'
 
 module WeatherbugDotCom
   API_URL = 'api.wxbug.net'
@@ -43,5 +43,3 @@ module WeatherbugDotCom
 
 end
 
-WeatherbugDotCom.set_code('A5559139565')
-p WeatherbugDotCom.current_weather({:lat => -23.53, :long => -46.61})
