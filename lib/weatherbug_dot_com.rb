@@ -1,10 +1,8 @@
 require 'rubygems'
 require 'nokogiri'
 require 'open-uri'
-require './weatherbug_dot_com/station.rb'
-require './weatherbug_dot_com/weather.rb'
-
-class WeatherbugCodeError < Exception;end
+require 'weatherbug_dot_com/station.rb'
+require 'weatherbug_dot_com/weather.rb'
 
 module WeatherbugDotCom
   API_URL = 'api.wxbug.net'
