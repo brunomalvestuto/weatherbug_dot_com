@@ -21,10 +21,10 @@ module WeatherbugDotCom
 
   def self.get_url(action, params = {})
     unless @code.nil?
-      p = {:Acode => @code}
+      p = {:Acode => @code, :UnitType => 1}
       p.merge!(params)
       p = p.map {|k,v| "#{k}=#{v}"}.join('&')
-      puts "http://#{@code}.#{API_URL}/#{action}.aspx?#{p}"
+      "http://#{@code}.#{API_URL}/#{action}.aspx?#{p}"
     else
       raise WeatherbugCodeError
     end
@@ -32,7 +32,7 @@ module WeatherbugDotCom
 
   def self.current_weather(*args)
     response = make_request('getLiveWeatherRSS', *args)
-    Weather.from_document(response.xpath('/ws:weather/aws:ob'))
+    Weather.from_document(response.xpath("/rss/channel/*[name()='aws:weather']/*[name()='aws:ob']"))
   end
 
   def self.set_code(code)
