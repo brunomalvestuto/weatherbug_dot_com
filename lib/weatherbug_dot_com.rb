@@ -24,7 +24,8 @@ module WeatherbugDotCom
       p = {:Acode => @code, :UnitType => 1}
       p.merge!(params)
       p = p.map {|k,v| "#{k}=#{v}"}.join('&')
-      "http://#{@code}.#{API_URL}/#{action}.aspx?#{p}"
+      url = "http://#{@code}.#{API_URL}/#{action}.aspx?#{p}"
+      url
     else
       raise WeatherbugCodeError
     end

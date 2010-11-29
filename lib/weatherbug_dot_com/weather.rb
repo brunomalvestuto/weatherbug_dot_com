@@ -12,5 +12,10 @@ module WeatherbugDotCom
     register_transformer "//*[name()='aws:wind-speed']", :transform => :to_i, :name => :wind_spreed
     register_transformer "//*[name()='aws:pressure']", :transform => :to_f, :name => :pressure
     register_transformer "//*[name()='aws:temp']", :transform => :to_f, :name => :temperature
+    register_transformer "//*[name()='aws:city-state']", :transform => lambda {|i| i.gsub(/^(.*?),.*$/, '\1') }, :name => :city
+    register_transformer "//*[name()='aws:current-condition']", :name => :condition
+    register_transformer "//*[name()='aws:current-condition']/@icon", :name => :condition_icon
+
+
   end
 end

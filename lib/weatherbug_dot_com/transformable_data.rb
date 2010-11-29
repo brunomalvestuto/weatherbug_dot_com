@@ -20,7 +20,10 @@ module WeatherbugDotCom
         # If this thing is empty, skip it
         next if value.nil?
         # If this thing needs to be transformed, transform it (from a string)
-        value = value.send(options[:transform]) if options.has_key?(:transform)
+        if options.has_key?(:transform)
+          value = options[:transform].respond_to?(:call)?  options[:transform].call(value) : value.send(options[:transform])
+        end
+
         # Assign it on the class
         object.send("#{options[:name]}=", value)
       end
